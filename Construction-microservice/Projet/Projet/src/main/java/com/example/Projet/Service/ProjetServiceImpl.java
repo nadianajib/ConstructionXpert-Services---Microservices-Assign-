@@ -1,7 +1,9 @@
 package com.example.Projet.Service;
 
 import com.example.Projet.Dao.ProjetRepository;
+import com.example.Projet.model.FullProjetResponse;
 import com.example.Projet.model.Projet;
+import com.example.Projet.model.Tache;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class ProjetServiceImpl implements ProjetService {
 
     private final ProjetRepository projetRepository;
+    private final TacheRepository tacheRepository;
+
 
     @Override
     public Projet createProjet(Projet projet) {
@@ -49,4 +53,23 @@ public class ProjetServiceImpl implements ProjetService {
     public void deleteProjet(int id) {
         projetRepository.deleteById(id);
     }
-}
+
+    @Override
+    public FullProjetResponse projetWithTaches(int id) {
+        Projet projet = projetRepository.findById(id)
+                .orElse(Projet.builder().nomProjet("Not_Found").build());
+
+        // Utilisez le TacheRepository pour récupérer les tâches associées au projet
+        List<Tache> tache = tacheRepository.findAllByProjetId(id); // Assurez-vous que cette méthode existe dans TacheRepository
+
+        return FullProjetResponse.builder()
+                .nomProjet(projet.getNomProjet())
+                .DateDebut(projet.getDateDebut())
+                .DateFin(projet.getDateFin())
+                .description(projet.getDescription())
+                .budget(projet.getBudget())
+                .taches(tache)
+                .build();
+    }
+    }
+
