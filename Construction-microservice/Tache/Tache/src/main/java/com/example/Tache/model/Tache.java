@@ -1,4 +1,4 @@
-package com.example.Tache;
+package com.example.Tache.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

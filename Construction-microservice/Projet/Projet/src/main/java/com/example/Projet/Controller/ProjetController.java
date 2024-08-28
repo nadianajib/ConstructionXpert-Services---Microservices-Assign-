@@ -18,27 +18,23 @@ public class ProjetController {
 
     @PostMapping("/add")
     public ResponseEntity<Projet> createProjet(@RequestBody Projet projet) {
-        Projet savedProjet = projetService.saveProjet(projet);
-        return new ResponseEntity<>(savedProjet, HttpStatus.CREATED);
+        return new ResponseEntity<>(projetService.createProjet(projet), HttpStatus.CREATED);
     }
+
     @GetMapping("/all")
     public ResponseEntity<List<Projet>> getAllProjets() {
-        return new ResponseEntity<>(projetService.findAllProjets(), HttpStatus.OK);
+        return new ResponseEntity<>(projetService.getAllProjets(), HttpStatus.OK);
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Projet> updateProjet(@PathVariable Long id, @RequestBody Projet projet) {
-        Projet updatedProjet = projetService.updateProjet(id, projet);
+    public ResponseEntity<Projet> updateProjet(@PathVariable int id, @RequestBody Projet projet) { // Change Long to int
+        Projet updatedProjet = projetService.updateProjet(id, projet); // Change Long to int
         return new ResponseEntity<>(updatedProjet, HttpStatus.OK);
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProjet(@PathVariable int id) {
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteProjet(@PathVariable int id) {
         projetService.deleteProjet(id);
-        return new ResponseEntity<>("Projet supprimé avec succès", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
-
 }
-
-
-

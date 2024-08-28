@@ -19,6 +19,7 @@ private int idProjet;
 private String nomProjet;
 private String DateDebut;
 private String DateFin;
+private String description;
 private Double budget;
 
 }
