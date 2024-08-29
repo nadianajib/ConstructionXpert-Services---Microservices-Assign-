@@ -28,7 +28,7 @@ public class TachesController {
     }
 
 
-    @GetMapping("/projet/{id}")
+    @GetMapping("/{id}")
     public List<Taches> tachesOfProjet(@PathVariable Long id){
         return tachesService.getAllTachesByProjet(id);
     }
