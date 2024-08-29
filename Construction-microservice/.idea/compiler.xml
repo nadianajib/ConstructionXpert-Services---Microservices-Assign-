@@ -15,6 +15,9 @@
         <module name="Projets" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="GestionDeConstruction" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
