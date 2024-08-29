@@ -8,9 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Projet" />
+        <module name="discovery" />
+        <module name="Resources" />
         <module name="Taches" />
         <module name="gateway" />
-        <module name="discovery" />
         <module name="Tache" />
         <module name="Projets" />
       </profile>
@@ -23,6 +24,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Projet" options="-parameters" />
       <module name="Projets" options="-parameters" />
+      <module name="Resources" options="-parameters" />
       <module name="Tache" options="-parameters" />
       <module name="Taches" options="-parameters" />
       <module name="discovery" options="-parameters" />
