@@ -39,10 +39,7 @@ public class ProjetsServiceImpl implements ProjetsService{
         return projetsRepository.findAll();
     }
 
-    @Override
-    public void supprimerProjet(Long id) {
-        projetsRepository.deleteById(id);
-    }
+
 
     @Override
     public FullProjetResponse projetWithTaches(Long id) {
@@ -62,4 +59,13 @@ public class ProjetsServiceImpl implements ProjetsService{
                 .taches(taches)
                 .build();
     }
+    @Override
+    public void supprimerProjet(Long id) {
+        // Supprimer les tâches associées
+        tachesClient.deleteByProjetId(id); // Utiliser le client Taches pour appeler le service Taches
+
+        // Supprimer le projet
+        projetsRepository.deleteById(id);
+    }
+
 }

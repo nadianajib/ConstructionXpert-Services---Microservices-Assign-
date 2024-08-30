@@ -3,7 +3,6 @@ package com.example.Taches.service;
 import com.example.Taches.model.Taches;
 import com.example.Taches.model.enums.Statut;
 import com.example.Taches.repository.TachesRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TachesServiceImpl implements TachesService{
+public class TachesServiceImpl implements TachesService {
 
     @Autowired
-    TachesRepository tachesRepository;
-
+    private TachesRepository tachesRepository;
 
     @Override
     public Taches ajouterTache(Taches taches) {
@@ -25,14 +23,14 @@ public class TachesServiceImpl implements TachesService{
 
     @Override
     public Taches editTache(Long id, Taches taches) {
-        Taches edited = new Taches();
-        edited.setId(id);
-        edited.setStatut(taches.getStatut());
-        edited.setDescription(taches.getDescription());
-        edited.setDateDebut(taches.getDateDebut());
-        edited.setDateFin(taches.getDateFin());
-        edited.setProjetId(taches.getProjetId());
-        return tachesRepository.save(edited);
+        Taches existingTache = tachesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tâche non trouvée"));
+        existingTache.setStatut(taches.getStatut());
+        existingTache.setDescription(taches.getDescription());
+        existingTache.setDateDebut(taches.getDateDebut());
+        existingTache.setDateFin(taches.getDateFin());
+        existingTache.setProjetId(taches.getProjetId());
+        return tachesRepository.save(existingTache);
     }
 
     @Override
@@ -47,16 +45,20 @@ public class TachesServiceImpl implements TachesService{
 
     @Override
     public Taches changerStatut(Long id, Taches taches) {
-        Optional<Taches> optionalTaches = tachesRepository.findById(id);
-        Taches statut = optionalTaches.get();
-        statut.setStatut(taches.getStatut());
-        return tachesRepository.save(statut);
+        Taches existingTache = tachesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tâche non trouvée"));
+        existingTache.setStatut(taches.getStatut());
+        return tachesRepository.save(existingTache);
+    }
+
+    @Override
+    public void deleteByProjetId(Long projetId) {
+        List<Taches> taches = tachesRepository.findAllByProjetId(projetId);
+        tachesRepository.deleteAll(taches);
     }
 
     @Override
     public List<Taches> getAllTachesByProjet(Long id) {
         return tachesRepository.findAllByProjetId(id);
     }
-
-
 }

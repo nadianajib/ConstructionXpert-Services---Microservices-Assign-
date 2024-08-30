@@ -28,7 +28,7 @@ public class TachesController {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/projet/{id}")
     public List<Taches> tachesOfProjet(@PathVariable Long id){
         return tachesService.getAllTachesByProjet(id);
     }
@@ -46,5 +46,10 @@ public class TachesController {
     @DeleteMapping("/delte/{id}")
     public void delete(@PathVariable Long id){
         tachesService.deleteTaches(id);
+    }
+
+    @DeleteMapping("/projet/{id}")
+    public void deleteTachesOfProjet(@PathVariable Long id){
+        tachesService.deleteByProjetId(id);
     }
 }

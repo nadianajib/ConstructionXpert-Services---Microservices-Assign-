@@ -11,6 +11,10 @@ public interface TachesService {
     List<Taches> getAll();
     void deleteTaches(Long id);
     Taches changerStatut(Long id, Taches taches);
+
+    void deleteByProjetId(Long projetId);
+
     List<Taches> getAllTachesByProjet(Long id);
+
 
 }
