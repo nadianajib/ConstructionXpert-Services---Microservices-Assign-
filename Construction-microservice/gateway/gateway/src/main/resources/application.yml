@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 eureka:
   client:
     register-with-eureka: false
@@ -14,44 +13,20 @@ spring:
         locator:
           enabled: true
       mvc:
-       routes:
-        - id: projets
-          uri: http://localhost:8090
-          predicates:
-            - Path=/api/projets/**
-        - id: taches
-          uri: http://localhost:8070
-          predicates:
-            - Path=/api/taches/**
-        - id: ressources
-          uri: http://localhost:8081
-          predicates:
-                - Path=/api/ressources/**
+        routes:
+          - id: projets
+            uri: http://localhost:8090
+            predicates:
+              - Path=/api/projets/**
+          - id: taches
+            uri: http://localhost:8070
+            predicates:
+              - Path=/api/taches/**
+          - id: ressources
+            uri: http://localhost:8081
+            predicates:
+              - Path=/api/ressources/**
 
 
 server:
   port: 8222
-=======
-server:
-  port: 8222
-  eureka:
-    client:
-      registrer-with-eureka: false
-      server:
-        port: 8222
-        spring:
-          cloud:
-            gateway:
-              discovery:
-                locator:
-                  enabled: true
-                routes:
-                  - id: projets
-                    uri: http://localhost:8090
-                    predicates:
-                      - Path=/api/v1/projets/**
-                      - id: taches
-                        uri: http://localhost:8070
-                        predicates:
-                          - Path=/api/v1/taches/**
->>>>>>> 4da7eadbc518f737fa888d5f7b277baff6fa49fb
