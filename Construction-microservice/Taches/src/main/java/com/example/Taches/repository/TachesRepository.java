@@ -8,6 +8,7 @@ import java.util.List;
 @Repository
 public interface TachesRepository extends JpaRepository<Taches, Long> {
     List<Taches> findAllByProjetId(Long id);
+    
 
 
 }
