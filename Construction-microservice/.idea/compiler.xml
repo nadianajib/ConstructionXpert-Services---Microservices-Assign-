@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Projet" />
+        <module name="utilisateur" />
         <module name="discovery" />
         <module name="Resources" />
         <module name="Taches" />
@@ -29,6 +30,7 @@
       <module name="Taches" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="utilisateur" options="-parameters" />
     </option>
   </component>
 </project>
