@@ -4,6 +4,11 @@ package com.example.utilisateur.Config;
 
 
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +16,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 
 @Service
@@ -18,6 +24,9 @@ public class JwtService {
 
     private static final  String SECRET_KEY ="OQ8s4uDjTJqQNtghPJEsQ6o75iX00vYuT88EMpCiJIA=\n";
 
+    public void validateToken(final String token) {
+        Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);
+    }
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }

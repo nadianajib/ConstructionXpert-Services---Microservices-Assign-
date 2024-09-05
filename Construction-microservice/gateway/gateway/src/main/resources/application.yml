@@ -5,28 +5,38 @@ eureka:
 spring:
   application:
     name: gateway
+  main:
+    web-application-type: reactive
+    allow-circular-references: true  # Cette ligne permet les références circulaires
   config:
     import: optional:configserver:http://localhost:8888
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-      mvc:
-        routes:
-          - id: projets
-            uri: http://localhost:8090
-            predicates:
-              - Path=/api/projets/**
-          - id: taches
-            uri: http://localhost:8070
-            predicates:
-              - Path=/api/taches/**
-          - id: ressources
-            uri: http://localhost:8081
-            predicates:
-              - Path=/api/ressources/**
-
+      routes:
+        - id: projets
+          uri: http://localhost:8090/
+          predicates:
+            - Path=/api/projets/**
+          filters:
+            - name: AuthenticationFilter  # Assurez-vous que le filtre est correctement configuré
+        - id: tache
+          uri: http://localhost:8070/
+          predicates:
+            - Path=/api/taches/**
+          filters:
+            - name: AuthenticationFilter
+        - id: ressource
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/api/ressources/**
+          filters:
+            - name: AuthenticationFilter
+        - id: authentication
+          uri: http://localhost:8074/
+          predicates:
+            - Path=/api/v1/auth/**
+          filters:
+            - name: AuthenticationFilter
 
 server:
   port: 8222

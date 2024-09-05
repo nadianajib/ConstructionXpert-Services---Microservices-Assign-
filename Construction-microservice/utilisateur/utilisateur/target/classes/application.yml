@@ -3,17 +3,17 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defautltZone: http://localhost:8761/eureka
 server:
   port: 8074
 spring:
   application:
-    name: utilisateur
+    name: utilsateur
   config:
     import: optional:configserver:http://localhost:8888
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/authentification
+    url: jdbc:postgresql://localhost:5432/authentication
     username: postgres
     password: admin
   jpa:
@@ -21,6 +21,8 @@ spring:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-  flyway:
-    locations: classpath:db/migration
-    baseline-on-migrate: true
+    flyway:
+      locations: db/megration
+      baseline-on-migrate: true
+
+

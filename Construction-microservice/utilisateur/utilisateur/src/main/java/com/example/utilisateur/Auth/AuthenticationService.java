@@ -1,6 +1,4 @@
-
 package com.example.utilisateur.Auth;
-
 
 import com.example.utilisateur.Config.JwtService;
 import com.example.utilisateur.Repository.UserRepository;
@@ -16,33 +14,26 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-
-    private final  authenticationUserRepository userRepository;
-
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
     private final JwtService jwtService;
-
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-
         var user = new Utilisateur();
-                user.setNom(request.getNom());
-                user.setEmail(request.getEmail());
-                user.setPassword(passwordEncoder.encode(request.getPassword()));
-                user.setRole(Role.USER);
-                userRepository.save(user);
+        user.setNom(request.getNom());
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(Role.USER);
+        userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
-    //Register Admin ;:hna blasst user andir admin et technicien
     public AuthenticationResponse registerAdmin(RegisterRequest request) {
-
-        var admin = new Admin();
+        var admin = new Utilisateur(); // Si Admin est une sous-classe de Utilisateur, ajustez en conséquence
         admin.setNom(request.getNom());
         admin.setEmail(request.getEmail());
         admin.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -55,9 +46,7 @@ public class AuthenticationService {
                 .build();
     }
 
-
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -70,10 +59,5 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
-
-
     }
-
-
-
 }
