@@ -1,6 +1,6 @@
 eureka:
   client:
-    register-with-eureka: false
+    register-with-eureka: true
 
 spring:
   application:
@@ -35,8 +35,6 @@ spring:
           uri: http://localhost:8074/
           predicates:
             - Path=/api/v1/auth/**
-          filters:
-            - name: AuthenticationFilter
 
 server:
   port: 8222

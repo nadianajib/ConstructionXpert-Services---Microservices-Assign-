@@ -1,1 +1,17 @@
+com\example\utilisateur\Config\JwtService.class
+com\example\utilisateur\Config\SecurityConfig.class
+com\example\utilisateur\model\Utilisateur.class
+com\example\utilisateur\model\Role.class
+com\example\utilisateur\Auth\AuthenticationService.class
+com\example\utilisateur\Auth\AuthenticationResponse$AuthenticationResponseBuilder.class
+com\example\utilisateur\Repository\UserRepository.class
+com\example\utilisateur\Auth\AuthenticationRequest.class
+com\example\utilisateur\Config\JwtAuthenticationFilter.class
+com\example\utilisateur\model\Utilisateur$UtilisateurBuilder.class
+com\example\utilisateur\Auth\AuthenticationController.class
+com\example\utilisateur\Auth\AuthenticationResponse.class
+com\example\utilisateur\Auth\AuthenticationRequest$AuthenticationRequestBuilder.class
 com\example\utilisateur\UtilisateurApplication.class
+com\example\utilisateur\Config\ApplicationConfig.class
+com\example\utilisateur\Auth\RegisterRequest$RegisterRequestBuilder.class
+com\example\utilisateur\Auth\RegisterRequest.class
